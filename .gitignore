@@ -2,6 +2,7 @@
 *.log
 references/site-experience/*.md
 .cdp-browser.json
+!examples/*/.cdp-browser.json
 node_modules
 temp/
 .learnings/

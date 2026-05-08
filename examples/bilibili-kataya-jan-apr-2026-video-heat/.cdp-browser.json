@@ -1,0 +1,12 @@
+{
+  "browser": "Vivaldi",
+  "platform": "darwin",
+  "launchCmd": "open",
+  "launchArgs": [
+    "-a",
+    "Vivaldi",
+    "--args",
+    "--remote-debugging-port=9222",
+    "--remote-allow-origins=*"
+  ]
+}

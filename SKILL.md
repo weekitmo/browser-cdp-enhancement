@@ -5,11 +5,11 @@ description: >-
   Use when an AI agent needs reliable web access beyond plain search: choosing between
   WebSearch, WebFetch, curl, Jina, and a real browser; reading pages; verifying information
   against primary sources; using logged-in Chromium browser sessions; operating dynamic or
-  anti-scraping sites; inspecting console output; querying accessibility trees; uploading
-  files; extracting media; sampling video frames; or finding previously visited/internal
-  pages from local bookmarks and history. This skill provides the CDP proxy workflow,
-  browser selection and startup checks, tab hygiene, site-experience reuse, and parallel
-  research guidance for browser-based tasks.
+  anti-scraping sites; interacting with visible controls through an Accessibility Tree first
+  workflow; inspecting console output; uploading files; extracting media; sampling video
+  frames; or finding previously visited/internal pages from local bookmarks and history.
+  This skill provides the CDP proxy workflow, browser selection and startup checks, tab
+  hygiene, site-experience reuse, and parallel research guidance for browser-based tasks.
 metadata:
   author: weekitmo
   version: "1.0.0"
@@ -82,17 +82,26 @@ node "${CLAUDE_SKILL_DIR}/scripts/check-deps.mjs"
 
 **Jina**（可选预处理层，可与 WebFetch/curl 组合使用，由于其特性可节省 tokens 消耗，请积极在任务合适时组合使用）：第三方网络服务，可将网页转为 Markdown，大幅节省 token 但可能有信息损耗。调用方式为 `r.jina.ai/example.com`（URL 前加前缀，不保留原网址 http 前缀），限 20 RPM。适合文章、博客、文档、PDF 等以正文为核心的页面；对数据面板、商品页等非文章结构页面可能提取到错误区块。
 
-进入浏览器层后，`/eval` 就是你的眼睛和手：
+进入浏览器层后，**先用页面语义操作，再用 DOM 结构补充**：
 
-- **看**：用 `/eval` 查询 DOM，发现页面上的链接、按钮、表单、文本内容——相当于「看看这个页面有什么」
-- **做**：用 `/click` 点击元素、`/scroll` 滚动加载、`/eval` 填表提交——像人一样在页面内自然导航
-- **读**：用 `/eval` 提取文字内容，判断图片/视频是否承载核心信息——是则提取媒体 URL 定向读取或 `/screenshot` 视觉识别
+- **找控件**：可见/可操作元素先用 `/ax` 查 Accessibility Tree（角色、可访问名称、状态），不要先猜 CSS selector。
+- **点控件**：按钮、链接、tab、菜单项、复选框等优先用 `/clickAX` 真实鼠标点击；AX 不可用时再退回 `/click` / `/clickAt` / `/eval`。
+- **读数据**：批量提取列表、表格、媒体 URL、隐藏 DOM 状态时用 `/eval`；这类结构化读取不是点击定位，不必强行走 AX。
+- **补视觉**：页面语义或 DOM 都不足以判断时再用 `/screenshot`，尤其是图片/视频承载核心信息时。
 
 浏览网页时，**先了解页面结构，再决定下一步动作**。不需要提前规划所有步骤。
 
-### 优先：Accessibility Tree 定位元素
+### 强规则：AX Tree First 操作模式
 
-当目标是用户可见/可操作控件（按钮、链接、输入框、菜单项、复选框、tab 等），**优先使用 Accessibility Tree（AX Tree）按语义定位**，再退回 CSS selector / JS query。AX Tree 基于浏览器暴露给无障碍技术的角色与可访问名称，通常比猜 DOM 结构或 class 更稳定，也更接近用户描述里的「提交按钮」「搜索输入框」。
+当目标是用户可见/可操作控件（按钮、链接、输入框、菜单项、复选框、tab、搜索框、作者名、卡片入口等），**必须优先使用 Accessibility Tree（AX Tree）按语义定位**，再退回 CSS selector / JS query。AX Tree 基于浏览器暴露给无障碍技术的角色与可访问名称，通常比猜 DOM 结构或 class 更稳定，更接近用户描述里的「提交按钮」「搜索输入框」「某个作者主页」，也能用更少 token 看清页面可操作结构。
+
+**默认决策顺序：**
+
+1. **用户会说得出的东西**（按钮、链接、输入框、tab、菜单、作者名、搜索结果）→ 先 `/ax`。
+2. **需要点击/进入/切换的东西** → 先 `/clickAX`；若 AX 节点没有坐标或点击失败，再记录原因并退回 `/clickAt` / `/click` / `/eval`。
+3. **需要输入文字** → 先用 `/ax` 找 textbox/searchbox 并点击聚焦；若代理没有专门输入端点，可在已确认目标后用最小 `/eval` 设置值并触发 input/keyboard 事件。
+4. **需要批量读取数据**（视频卡片、表格行、JSON-LD、媒体 URL）→ 用 `/eval` 结构化提取；这是读取数据，不是控件定位。
+5. **如果没有先用 AX** 就直接写 `document.querySelector(...)` 定位可见控件，必须能说明例外：AX 不暴露目标、目标在 canvas/Shadow DOM/iframe 中不可达、需要复杂状态读取，或这是批量数据提取。
 
 常用流程：
 
@@ -315,3 +324,9 @@ updated: 2026-05-08
 |------|---------|
 | `references/cdp-api.md` | 需要 CDP API 详细参考、JS 提取模式、错误处理时 |
 | `references/site-experience/{domain}.md` | 确定目标网站后，读取对应站点经验 |
+
+## Examples 索引
+
+| 目录 | 展示内容 |
+|------|---------|
+| `examples/bilibili-kataya-jan-apr-2026-video-heat/` | 使用本地 Vivaldi + CDP 访问 B 站，按 AX Tree First 模式搜索作者、点击进入主页/投稿页、点击“下一页”翻页，提取 2026 年 1–4 月视频列表，按播放量生成 Markdown 排名，并保存过程记录、截图和浏览器配置快照 |
