@@ -330,3 +330,4 @@ updated: 2026-05-08
 | 目录 | 展示内容 |
 |------|---------|
 | `examples/bilibili-kataya-jan-apr-2026-video-heat/` | 使用本地 Vivaldi + CDP 访问 B 站，按 AX Tree First 模式搜索作者、点击进入主页/投稿页、点击“下一页”翻页，提取 2026 年 1–4 月视频列表，按播放量生成 Markdown 排名，并保存过程记录、截图和浏览器配置快照 |
+| `examples/brave-member-center-wechat-pay-console/` | 使用本地 Brave + CDP 访问本地会员中心开发页，点击支付方式切换，在弹出面板选择“微信支付”，再用 AX Tree 点击“立即开通”，保存 DevTools console 日志且不截图 |

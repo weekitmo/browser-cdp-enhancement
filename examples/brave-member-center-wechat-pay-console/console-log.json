@@ -1,0 +1,51 @@
+{
+  "entries": [
+    {
+      "type": "error",
+      "text": "TypeError: Cannot read properties of undefined (reading 'length')\n    at HTMLDocument.i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:348:8970)\n    at http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:87:9",
+      "args": [
+        "TypeError: Cannot read properties of undefined (reading 'length')\n    at HTMLDocument.i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:348:8970)\n    at http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:87:9"
+      ],
+      "timestamp": 1778237181619.49,
+      "stack": "at i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:347:8969)\nat <anonymous> (http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:86:8)"
+    },
+    {
+      "type": "error",
+      "text": "TypeError: Cannot read properties of undefined (reading 'length')\n    at HTMLDocument.i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:348:8970)\n    at http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:87:9",
+      "args": [
+        "TypeError: Cannot read properties of undefined (reading 'length')\n    at HTMLDocument.i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:348:8970)\n    at http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:87:9"
+      ],
+      "timestamp": 1778237197677.058,
+      "stack": "at i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:347:8969)\nat <anonymous> (http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:86:8)"
+    },
+    {
+      "type": "error",
+      "text": "TypeError: Cannot read properties of undefined (reading 'length')\n    at HTMLDocument.i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:348:8970)\n    at http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:87:9",
+      "args": [
+        "TypeError: Cannot read properties of undefined (reading 'length')\n    at HTMLDocument.i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:348:8970)\n    at http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:87:9"
+      ],
+      "timestamp": 1778237210112.222,
+      "stack": "at i (chrome-extension://[extension-id-redacted]/content-scripts/host.js:347:8969)\nat <anonymous> (http://localhost:9051/web/member-center/node_modules/.vite/deps/@vant_touch-emulator.js?v=9d26a17f:86:8)"
+    },
+    {
+      "type": "warning",
+      "text": "[native] sendSensorsLog unsupported Object",
+      "args": [
+        "[native] sendSensorsLog unsupported",
+        "Object"
+      ],
+      "timestamp": 1778237210115.493,
+      "stack": "at overrideMethod (chrome-extension://[extension-id-redacted]/build/installHook.js:0:174821)\nat e.callOriginalConsole (http://localhost:9051/web/member-center/vconsole.min.js:9:89685)\nat e.addLog (http://localhost:9051/web/member-center/vconsole.min.js:9:90717)\nat <anonymous> (http://localhost:9051/web/member-center/vconsole.min.js:9:88138)\nat sendSensorsLog (http://localhost:9051/web/member-center/src/[app-source-redacted]:418:10)\nat trackPrimaryButton (http://localhost:9051/web/member-center/src/[app-source-redacted]:131:6)\nat handlePrimaryAction (http://localhost:9051/web/member-center/src/[app-source-redacted]:140:6)"
+    },
+    {
+      "type": "log",
+      "text": "🍍 \"pay\" store installed 🆕",
+      "args": [
+        "🍍 \"pay\" store installed 🆕"
+      ],
+      "timestamp": 1778237210117.638,
+      "stack": "at e.callOriginalConsole (http://localhost:9051/web/member-center/vconsole.min.js:9:89685)\nat e.addLog (http://localhost:9051/web/member-center/vconsole.min.js:9:90717)\nat <anonymous> (http://localhost:9051/web/member-center/vconsole.min.js:9:88138)\nat toastMessage (http://localhost:9051/web/member-center/node_modules/.vite/deps/pinia.js?v=9d26a17f:188:12)\nat <anonymous> (http://localhost:9051/web/member-center/node_modules/.vite/deps/pinia.js?v=9d26a17f:746:41)\nat bt (chrome-extension://[extension-id-redacted]/dist/prepare.js:0:63081)\nat <anonymous> (chrome-extension://[extension-id-redacted]/dist/prepare.js:0:70249)\nat <anonymous> (chrome-extension://[extension-id-redacted]/dist/prepare.js:0:33619)\nat <anonymous> (chrome-extension://[extension-id-redacted]/dist/prepare.js:0:33611)"
+    }
+  ],
+  "count": 5
+}

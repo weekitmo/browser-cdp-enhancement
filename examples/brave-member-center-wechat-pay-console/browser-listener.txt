@@ -1,0 +1,1 @@
+Brave Browser is listening on 127.0.0.1:9222 (PID/user redacted)
