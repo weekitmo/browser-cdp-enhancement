@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+references/site-experience/*.md
+.cdp-browser.json
+node_modules
+temp/
+.learnings/
+docs/
