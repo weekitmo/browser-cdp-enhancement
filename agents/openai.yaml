@@ -1,0 +1,4 @@
+interface:
+  display_name: "Browser CDP Enhancement"
+  short_description: "Reliable CDP browsing for dynamic web tasks"
+  default_prompt: "Use $browser-cdp-enhancement to research a dynamic web page with CDP and verify key facts."

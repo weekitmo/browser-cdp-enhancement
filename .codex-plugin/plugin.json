@@ -1,0 +1,40 @@
+{
+  "name": "browser-cdp-enhancement",
+  "version": "1.0.0",
+  "description": "Reliable web-access skill for choosing between search, fetch, curl, Markdown preprocessing, and real Chromium CDP browsing.",
+  "author": {
+    "name": "weekitmo",
+    "url": "https://github.com/weekitmo"
+  },
+  "homepage": "https://github.com/weekitmo/browser-cdp-enhancement",
+  "repository": "https://github.com/weekitmo/browser-cdp-enhancement",
+  "license": "MIT",
+  "keywords": [
+    "browser",
+    "cdp",
+    "web-access",
+    "research",
+    "skills",
+    "automation"
+  ],
+  "skills": "./",
+  "interface": {
+    "displayName": "Browser CDP Enhancement",
+    "shortDescription": "Reliable CDP browsing for dynamic web tasks",
+    "longDescription": "Use Browser CDP Enhancement to choose between search, WebFetch, curl, Markdown preprocessing, and real Chromium browser sessions for reliable web research and dynamic page interaction.",
+    "developerName": "weekitmo",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Research this dynamic web page with CDP.",
+      "Verify this URL against primary sources.",
+      "Use my browser session to inspect this page."
+    ],
+    "websiteURL": "https://github.com/weekitmo/browser-cdp-enhancement",
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

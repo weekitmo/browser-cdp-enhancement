@@ -1,0 +1,19 @@
+{
+  "name": "browser-cdp-enhancement",
+  "description": "Reliable web-access skill for choosing between search, fetch, curl, Markdown preprocessing, and real Chromium CDP browsing.",
+  "version": "1.0.0",
+  "author": {
+    "name": "weekitmo"
+  },
+  "homepage": "https://github.com/weekitmo/browser-cdp-enhancement",
+  "repository": "https://github.com/weekitmo/browser-cdp-enhancement",
+  "license": "MIT",
+  "keywords": [
+    "browser",
+    "cdp",
+    "web-access",
+    "research",
+    "skills",
+    "automation"
+  ]
+}

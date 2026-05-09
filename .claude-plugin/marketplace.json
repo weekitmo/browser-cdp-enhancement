@@ -1,0 +1,18 @@
+{
+  "name": "browser-cdp-enhancement-dev",
+  "description": "Development marketplace entry for the Browser CDP Enhancement skill.",
+  "owner": {
+    "name": "weekitmo"
+  },
+  "plugins": [
+    {
+      "name": "browser-cdp-enhancement",
+      "description": "Reliable web access through search, fetch, curl, Markdown preprocessing, and real Chromium CDP browsing.",
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "weekitmo"
+      }
+    }
+  ]
+}

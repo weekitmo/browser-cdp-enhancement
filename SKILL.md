@@ -52,6 +52,10 @@ node "${CLAUDE_SKILL_DIR}/scripts/check-deps.mjs"
 温馨提示：部分站点对浏览器自动化操作检测严格，存在账号封禁风险。已内置防护措施但无法完全避免，Agent 继续操作即视为接受。
 ```
 
+## Shell 工作流
+
+执行本 skill 涉及 `curl`/CDP/API 调用、JSON 处理、临时文件、URL 编解码或批量文本清洗时，先读取 `references/shell-workflow.md`。入口文件只保留原则；具体 Bash/Zsh 命令模式、`jq`/`python3`/`rg`/`sed`/`tee`/`mktemp` 用法和输出收敛规则放在该参考文件中。
+
 ## 浏览哲学
 
 **像人一样思考，兼顾高效与适应性的完成任务。**
@@ -80,7 +84,7 @@ node "${CLAUDE_SKILL_DIR}/scripts/check-deps.mjs"
 
 浏览器 CDP 不要求 URL 已知——可从任意入口出发，通过页面内搜索、点击、跳转等方式找到目标内容。WebSearch、WebFetch、curl 均不处理登录态。
 
-**Jina**（可选预处理层，可与 WebFetch/curl 组合使用，由于其特性可节省 tokens 消耗，请积极在任务合适时组合使用）：第三方网络服务，可将网页转为 Markdown，大幅节省 token 但可能有信息损耗。调用方式为 `r.jina.ai/example.com`（URL 前加前缀，不保留原网址 http 前缀），限 20 RPM。适合文章、博客、文档、PDF 等以正文为核心的页面；对数据面板、商品页等非文章结构页面可能提取到错误区块。
+**网页转 Markdown 预处理**（可与 WebFetch/curl 组合使用，用于减少冗余 token）：公开正文页可优先尝试 Jina Reader 或 Cloudflare `markdown.new`，必要时用本地 Python 正文抽取；具体选择、命令、限制与 fallback 见 `references/web-to-markdown.md`。这类方式适合文章、博客、文档、PDF 等正文页；对登录态、前端渲染、数据面板、商品页等可能失真或缺内容，需改用 curl 结构化抽取或浏览器 CDP。
 
 进入浏览器层后，**先用页面语义操作，再用 DOM 结构补充**：
 
@@ -322,6 +326,8 @@ updated: 2026-05-08
 
 | 文件 | 何时加载 |
 |------|---------|
+| `references/shell-workflow.md` | 执行 curl/CDP/API 调用、JSON 处理、临时文件、URL 编解码或批量文本清洗前 |
+| `references/web-to-markdown.md` | 需要用 Jina Reader、Cloudflare markdown.new 或本地 Python 将网页正文转 Markdown、减少 token 前 |
 | `references/cdp-api.md` | 需要 CDP API 详细参考、JS 提取模式、错误处理时 |
 | `references/site-experience/{domain}.md` | 确定目标网站后，读取对应站点经验 |
 
