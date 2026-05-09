@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="./assets/browser-cdp-enhancement-cover.png" alt="Browser CDP Enhancement 项目封面" />
+</p>
+
+<p align="center">
   <b>让 AI Agent 在搜索、抓取与真实浏览器之间做出正确选择的增强 Skill。</b><br/>
   <a href="#安装">⚡ 快速安装</a>
 </p>
