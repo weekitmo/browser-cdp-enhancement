@@ -45,7 +45,7 @@ git clone https://github.com/weekitmo/browser-cdp-enhancement ~/.claude/skills/b
 **方式三：npx**
 
 ```bash
-npx -y skills add https://github.com/weekitmo/browser-cdp-enhancement -g -y -a universal
+npx -y skills add https://github.com/weekitmo/browser-cdp-enhancement -g -y
 ```
 
 ## 前置配置（CDP 模式）
@@ -79,7 +79,7 @@ Proxy 通过 WebSocket 直连浏览器，提供 HTTP API：
 
 ```bash
 # 页面操作
-curl -s "http://localhost:4567/new?url=https://example.com"              # 新建 tab
+curl -s "http://localhost:4567/new?url=https://example.com"                 # 新建 tab
 curl -s -X POST "http://localhost:4567/eval?target=ID" -d 'document.title'  # 执行 JS
 curl -s -X POST "http://localhost:4567/click?target=ID" -d 'button.submit'  # JS 点击
 curl -s -X POST "http://localhost:4567/clickAt?target=ID" -d '.upload-btn'  # 真实鼠标点击
